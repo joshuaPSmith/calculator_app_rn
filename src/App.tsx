@@ -1,10 +1,7 @@
 import { Font  } from 'expo';
 import { Container, Content, Header } from 'native-base';
 import * as React from 'react';
-import { ScrollView, View } from 'react-native';
-import {
-  VancomycinEmpiricDosing
-} from './components/calculators/VancomycinEmpiricDosing/VancomycinEmpiricDosing';
+import HomeScreen from './pages/Home';
 
 export default class App extends React.Component <any, any> {
   constructor(props: {}) {
@@ -29,12 +26,7 @@ export default class App extends React.Component <any, any> {
     }
 
     return (
-      <Container>
-        <Header />
-        <Content>
-            <VancomycinEmpiricDosing/>
-        </Content>
-      </Container>
+      <HomeScreen />
     );
   }
 }
