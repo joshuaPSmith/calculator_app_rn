@@ -25,6 +25,7 @@ import {
   IResults
 } from './vancomycinEmpiricDosing.helper';
 import { roundTo } from '../../common/helper';
+import AppHeader from '../../header/AppHeader';
 
 interface IComponentState {
   form: IFormState;
@@ -154,6 +155,7 @@ export class VancomycinEmpiricDosing extends React.Component<{}, IComponentState
   public render() {
     return (
       <Container>
+        <AppHeader title="Vancomycin Empiric Dosing"/>
         <Content>
           <Form style={styles.form}>
             <H3>Patient Factors</H3>
