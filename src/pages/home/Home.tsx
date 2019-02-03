@@ -17,6 +17,11 @@ export default class HomeScreen extends React.Component<any, any> {
             onPress={() => this.props.navigation.navigate('VancomycinEmpiricDosing')}>
             <Text>Vancomycin Empiric Dosing</Text>
           </Button>
+          <Button full rounded dark
+            style={{ marginTop: 10 }}
+            onPress={() => this.props.navigation.navigate('CreatineClearance')}>
+            <Text>Creatine Clearance</Text>
+          </Button>
         </Content>
       </Container>
     );
