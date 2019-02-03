@@ -4,7 +4,6 @@ import {
   Content,
   Form,
   H3,
-  Header,
   Icon,
   Input,
   Item,
@@ -15,17 +14,17 @@ import {
 import * as React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import {
-  HeightUnitEnum,
-  WeightUnitEnum,
-  GenderEnum,
-  CalculatedWeightsEnum,
   IFormState,
-  ICalculatedWeights,
-  performCalculations,
+  returnVancomycinEmpiricDosing,
   IResults
-} from './vancomycinEmpiricDosing.helper';
-import { roundTo } from '../../common/helper';
+} from './helpers/vancomycinEmpiricDosing.helper';
+import { roundTo } from 'common/helpers/math.helpers';
 import AppHeader from '../../header/AppHeader';
+import {
+  ICalculatedWeights,
+  WeightUnitEnum,
+  CalculatedWeightsEnum } from 'common/helpers/weight.helpers';
+import { HeightUnitEnum, GenderEnum } from 'common/common.enums';
 
 interface IComponentState {
   form: IFormState;
@@ -123,7 +122,7 @@ export class VancomycinEmpiricDosing extends React.Component<{}, IComponentState
 
   public handleSubmit = () => {
 
-    const { calculatedWeights, results } = performCalculations({ ...this.state.form });
+    const { calculatedWeights, results } = returnVancomycinEmpiricDosing({ ...this.state.form });
 
     this.setState(
       {

@@ -5,11 +5,15 @@ import {
   VancomycinEmpiricDosing
 } from '../../components/calculators/VancomycinEmpiricDosing/VancomycinEmpiricDosing';
 import HomeScreen from './Home';
+import {
+  CreatineClearance
+} from '../../components/calculators/CreatinineClearance/CreatinineClearance';
 
 const HomeScreenStack = createDrawerNavigator(
   {
     Home: { screen: HomeScreen },
-    VancomycinEmpiricDosing: { screen: VancomycinEmpiricDosing }
+    VancomycinEmpiricDosing: { screen: VancomycinEmpiricDosing },
+    CreatineClearance: { screen: CreatineClearance }
   },
   {
     contentComponent: props => <SideBar {...props} />
