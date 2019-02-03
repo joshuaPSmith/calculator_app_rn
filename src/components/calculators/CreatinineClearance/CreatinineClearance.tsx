@@ -13,11 +13,7 @@ import {
 } from 'native-base';
 import * as React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import {
-  IFormState,
-  returnVancomycinEmpiricDosing,
-  IResults
-} from './helpers/vancomycinEmpiricDosing.helper';
+
 import { roundTo } from 'common/helpers/math.helpers';
 import AppHeader from '../../header/AppHeader';
 import {
@@ -25,16 +21,17 @@ import {
   WeightUnitEnum,
   CalculatedWeightsEnum } from 'common/helpers/weight.helpers';
 import { HeightUnitEnum, GenderEnum } from 'common/common.enums';
+import { returnCreatinineClearance } from './helpers/CreatinineClearance.helper';
 
 interface IComponentState {
-  form: IFormState;
+  form: any;
   calculations: {
     weights: ICalculatedWeights
   };
-  results: IResults;
+  results: any;
 }
 
-export class VancomycinEmpiricDosing extends React.Component<{}, IComponentState> {
+export class CreatineClearance extends React.Component<{}, IComponentState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -59,7 +56,6 @@ export class VancomycinEmpiricDosing extends React.Component<{}, IComponentState
         },
         gender: GenderEnum.MALE,
         isFormInvalid: true,
-        severeInfection: true,
       },
       calculations: {
         weights: {
@@ -74,12 +70,7 @@ export class VancomycinEmpiricDosing extends React.Component<{}, IComponentState
           selectedWeightName: CalculatedWeightsEnum.TOTALWEIGHTINKG,
           selectedWeightValue: 0,
         },
-        creatinineClearance: 0,
-        doseInMg: 0,
-        doseInterval: {
-          interval: 0,
-          displayMessage: '',
-        },
+        creatinineClearance: 0
       },
     };
   }
@@ -122,7 +113,7 @@ export class VancomycinEmpiricDosing extends React.Component<{}, IComponentState
 
   public handleSubmit = () => {
 
-    const { calculatedWeights, results } = returnVancomycinEmpiricDosing({ ...this.state.form });
+    const { calculatedWeights, results } = returnCreatinineClearance({ ...this.state.form });
 
     this.setState(
       {
@@ -237,18 +228,6 @@ export class VancomycinEmpiricDosing extends React.Component<{}, IComponentState
               <Picker.Item label="Male" value="male" />
               <Picker.Item label="Female" value="female" />
             </Picker>
-            <Picker
-              mode="dropdown"
-              iosHeader="Infection Source"
-              iosIcon={<Icon name="arrow-down" />}
-              style={{ width: undefined }}
-              selectedValue={this.state.form.severeInfection}
-              onValueChange={
-                value => this.handleSelectionInputChange(value, 'severeInfection')
-              }>
-              <Picker.Item label="Yes" value="true" />
-              <Picker.Item label="No" value="false" />
-            </Picker>
           </Form>
           <Button
             onPress={this.handleSubmit.bind(this)}
@@ -270,7 +249,7 @@ export class VancomycinEmpiricDosing extends React.Component<{}, IComponentState
 
   private results = (weights: any, results: any) => {
     const { totalWeightInKG, adjustedWeight, idealWeight, percentageAdjustedIdealWeight } = weights;
-    const { selectedWeight, creatinineClearance, doseInMg, doseInterval } = results;
+    const { selectedWeight, creatinineClearance } = results;
 
     return (
       <ScrollView
@@ -284,9 +263,6 @@ export class VancomycinEmpiricDosing extends React.Component<{}, IComponentState
         <Text>%AdjBW/IBW: {roundTo(percentageAdjustedIdealWeight, 0)}%</Text>
         <Text>Weight used for calculations: {selectedWeight.selectedWeightName}</Text>
         <Text>Creatinine Clearance: {roundTo(creatinineClearance, 2)}</Text>
-        <Text>Dosing: {roundTo(doseInMg, 2)}</Text>
-        <Text>Dosing Interval: {doseInterval.interval}</Text>
-        <Text> Trough Draw: {doseInterval.displayMessage}</Text>
       </ScrollView>
     );
 
