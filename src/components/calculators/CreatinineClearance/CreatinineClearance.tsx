@@ -19,9 +19,9 @@ import AppHeader from '../../header/AppHeader';
 import {
   ICalculatedWeights,
   WeightUnitEnum,
-  CalculatedWeightsEnum } from 'common/helpers/weight.helpers';
+  CalculatedWeightsEnum } from 'common/helpers/weight/weight.helpers';
 import { HeightUnitEnum, GenderEnum } from 'common/common.enums';
-import { returnCreatinineClearance } from './helpers/CreatinineClearance.helper';
+import { returnCreatinineClearanceResults } from './helpers/CreatinineClearance.helper';
 
 interface IComponentState {
   form: any;
@@ -113,7 +113,7 @@ export class CreatineClearance extends React.Component<{}, IComponentState> {
 
   public handleSubmit = () => {
 
-    const { calculatedWeights, results } = returnCreatinineClearance({ ...this.state.form });
+    const { calculatedWeights, results } = returnCreatinineClearanceResults({ ...this.state.form });
 
     this.setState(
       {

@@ -23,7 +23,7 @@ import AppHeader from '../../header/AppHeader';
 import {
   ICalculatedWeights,
   WeightUnitEnum,
-  CalculatedWeightsEnum } from 'common/helpers/weight.helpers';
+  CalculatedWeightsEnum } from 'common/helpers/weight/weight.helpers';
 import { HeightUnitEnum, GenderEnum } from 'common/common.enums';
 
 interface IComponentState {

@@ -4,12 +4,14 @@ import {
   ICalculateWeightProp,
   ICalculatedWeights,
   calculateWeight,
-  selectWeightToUse } from 'common/helpers/weight.helpers';
+  selectWeightToUse } from 'common/helpers/weight/weight.helpers';
 
 import { GenderEnum, HeightUnitEnum } from 'common/common.enums';
-import { calculateCreatinineClearance } from 'common/helpers/creatinineClearance.helper';
+import {
+  calculateCreatinineClearance
+} from 'common/helpers/creatinineClearance/creatinineClearance.helper';
 
-export const returnCreatinineClearance = (formState: any) => {
+export const returnCreatinineClearanceResults = (formState: any) => {
   const weightCalculationProps: ICalculateWeightProp = {
     weightUnit: formState.weightUnit,
     weight: Number(formState.weight.value),

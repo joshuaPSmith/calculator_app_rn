@@ -1,4 +1,4 @@
-import { HeightUnitEnum, GenderEnum } from '../common.enums';
+import { HeightUnitEnum, GenderEnum } from '../../common.enums';
 
 export const calculateWeight = (formData: ICalculateWeightProp): ICalculatedWeights => {
   const { weightUnit, weight, heightUnit, height, gender } = formData;

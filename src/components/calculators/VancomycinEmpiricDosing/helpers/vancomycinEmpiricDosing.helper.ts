@@ -5,8 +5,10 @@ import {
   ICalculateWeightProp,
   ICalculatedWeights,
   calculateWeight,
-  selectWeightToUse } from 'common/helpers/weight.helpers';
-import { calculateCreatinineClearance } from 'common/helpers/creatinineClearance.helper';
+  selectWeightToUse } from 'common/helpers/weight/weight.helpers';
+import {
+  calculateCreatinineClearance
+} from 'common/helpers/creatinineClearance/creatinineClearance.helper';
 
 export const calculateDose = (severeInfection: boolean, calculatedWeight: number) => {
   const weightMultiplier = severeInfection ? 15 : 17;
